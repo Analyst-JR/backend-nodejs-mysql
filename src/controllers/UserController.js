@@ -1,30 +1,13 @@
 const User = require('../model/User');
 
 module.exports = {
-    // find to all users in database
-    async index(req, res){
+    async index(req, res) {
         const users = await User.findAll();
-
         return res.json(users);
     },
-
-    // this function has the objective of registering a new user in the database
-    async registerUser(req, res) {
-        try {
-            const { age, username, password } = req.body;
-            const user = await User.create({ age, username, password, status: true });
-            return res.json({
-                error: false,
-                msg: "success when registering user",
-                database: user
-            });
-
-        } catch (error) {
-            return res.json({
-                error: true,
-                msg: "failed to register user",
-                type: error['name']
-            });
-        }
+    async store(req, res) {
+        const { name, email } = req.body;
+        const user = await User.create({ name, email });
+        return res.json(user);
     }
 };
