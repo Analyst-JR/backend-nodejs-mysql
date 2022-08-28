@@ -7,6 +7,7 @@ const routes = express.Router();
 //     return res.json({ msg: "Hello world!" })
 // });
 
+routes.get('/', UserController.index);
 routes.post('/registerUser', UserController.registerUser)
 
 module.exports = routes;

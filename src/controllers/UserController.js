@@ -1,6 +1,12 @@
 const User = require('../model/User');
 
 module.exports = {
+    // find to all users in database
+    async index(req, res){
+        const users = await User.findAll();
+
+        return res.json(users);
+    },
 
     // this function has the objective of registering a new user in the database
     async registerUser(req, res) {
